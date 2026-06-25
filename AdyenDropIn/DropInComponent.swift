@@ -114,6 +114,12 @@ public final class DropInComponent: NSObject,
     /// The delegate for user activity on card component.
     public weak var cardComponentDelegate: CardComponentDelegate?
 
+    /// The delegate for Apple Pay shipping and coupon callbacks.
+    public weak var applePayDelegate: ApplePayComponentDelegate?
+
+    /// The delegate for Apple Pay authorization callbacks.
+    public weak var authorizationDelegate: ApplePayAuthorizationDelegate?
+
     // MARK: - Presentable Component Protocol
 
     public var viewController: UIViewController {
@@ -196,7 +202,9 @@ public final class DropInComponent: NSObject,
             partialPaymentEnabled: partialPaymentDelegate != nil,
             order: order,
             supportsEditingStoredPaymentMethods: storedPaymentMethodsDelegate != nil,
-            presentationDelegate: self
+            presentationDelegate: self,
+            applePayDelegate: applePayDelegate,
+            authorizationDelegate: authorizationDelegate
         )
     }
 

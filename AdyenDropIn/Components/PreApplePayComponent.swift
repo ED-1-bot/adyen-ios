@@ -64,7 +64,9 @@ internal final class PreApplePayComponent: PresentableComponent,
         paymentMethod: ApplePayPaymentMethod,
         context: AdyenContext,
         configuration: Configuration,
-        applePayConfiguration: ApplePayComponent.Configuration
+        applePayConfiguration: ApplePayComponent.Configuration,
+        applePayDelegate: ApplePayComponentDelegate? = nil,
+        authorizationDelegate: ApplePayAuthorizationDelegate? = nil
     ) throws {
         self.context = context
         self.paymentMethod = paymentMethod
@@ -76,6 +78,8 @@ internal final class PreApplePayComponent: PresentableComponent,
             configuration: applePayConfiguration
         )
         self.applePayComponent.delegate = self
+        self.applePayComponent.applePayDelegate = applePayDelegate
+        self.applePayComponent.authorizationDelegate = authorizationDelegate
     }
 
     internal func didCancel() {

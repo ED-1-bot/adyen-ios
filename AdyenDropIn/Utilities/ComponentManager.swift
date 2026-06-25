@@ -31,6 +31,10 @@ internal final class ComponentManager {
     internal let context: AdyenContext
 
     internal weak var presentationDelegate: PresentationDelegate?
+
+    internal weak var applePayDelegate: ApplePayComponentDelegate?
+
+    internal weak var authorizationDelegate: ApplePayAuthorizationDelegate?
     
     internal init(
         paymentMethods: PaymentMethods,
@@ -39,7 +43,9 @@ internal final class ComponentManager {
         partialPaymentEnabled: Bool = true,
         order: PartialPaymentOrder?,
         supportsEditingStoredPaymentMethods: Bool = false,
-        presentationDelegate: PresentationDelegate
+        presentationDelegate: PresentationDelegate,
+        applePayDelegate: ApplePayComponentDelegate? = nil,
+        authorizationDelegate: ApplePayAuthorizationDelegate? = nil
     ) {
         self.paymentMethods = paymentMethods
         self.configuration = configuration
@@ -47,6 +53,8 @@ internal final class ComponentManager {
         self.order = order
         self.supportsEditingStoredPaymentMethods = supportsEditingStoredPaymentMethods
         self.presentationDelegate = presentationDelegate
+        self.applePayDelegate = applePayDelegate
+        self.authorizationDelegate = authorizationDelegate
 
         self.context = context
         if let payment = context.payment, let remainingAmount = order?.remainingAmount {

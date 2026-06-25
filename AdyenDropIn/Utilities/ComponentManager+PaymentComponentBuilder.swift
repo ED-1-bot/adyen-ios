@@ -352,7 +352,9 @@ private extension ComponentManager {
                 paymentMethod: paymentMethod,
                 context: context,
                 configuration: preApplePayConfig,
-                applePayConfiguration: configuration
+                applePayConfiguration: configuration,
+                applePayDelegate: applePayDelegate,
+                authorizationDelegate: authorizationDelegate
             ) {
                 return component
             }
@@ -363,7 +365,9 @@ private extension ComponentManager {
                 paymentMethod: paymentMethod,
                 context: context,
                 configuration: preApplePayConfig,
-                applePayConfiguration: applePay
+                applePayConfiguration: applePay,
+                applePayDelegate: applePayDelegate,
+                authorizationDelegate: authorizationDelegate
             )
         } catch {
             adyenPrint("Failed to instantiate ApplePayComponent because of error: \(error.localizedDescription)")
